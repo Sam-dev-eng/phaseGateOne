@@ -1,5 +1,15 @@
-def splitIntoArrays(numbers):
 
+def value_error_for_string(elements):
+ if type(elements) != str:
+    raise ValueError
+
+def value_error_for_list(elements):
+   if type(elements) != list:
+     raise ValueError
+
+
+def splitIntoArrays(numbers):
+   value_error_for_string(numbers)
    return list(numbers)
   
   
@@ -7,6 +17,10 @@ def splitIntoArrays(numbers):
 
 
 def check_card_validity_status(array_numbers):
+  value_error_for_list(array_numbers)
+  for items in array_numbers:
+    if type(items) != str:
+      raise ValueError 
   new_array = []
   if len(array_numbers) < 13 or len(array_numbers) > 16:
       return "Invalid"
@@ -39,6 +53,10 @@ def check_card_validity_status(array_numbers):
 
 
 def check_card_type(list_numbers):
+   value_error_for_list(list_numbers)
+   for items in list_numbers:
+    if type(items) != str:
+      raise ValueError 
 
    if list_numbers[0] == "5": 
         return "Master Card" 
@@ -66,7 +84,7 @@ def main_menu():
     print("**Credit Digit length: ",len(new_list)) 
     print("**Credit Card Validity Status: ", check_card_validity_status(new_list ))
     print("**************************************")
-main_menu()
+#main_menu()
 
 
 
