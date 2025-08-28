@@ -173,16 +173,28 @@ numberOffalures = numberOfFailed;
 
 }
 
+int classTotal = 0;
 int bestGrad = 0;
+int worstGrad = total(scores)[0];
 String bestStudentNumber = "";
+String worstStudentNumber = "";
 for (int count = 0; count < total(scores).length; count++){
+classTotal += total(scores)[count];
+
 
 if (total(scores)[count] > bestGrad){
 bestGrad = total(scores)[count];
 bestStudentNumber = StudentNUmbers.get(count);
 }
 
+if (total(scores)[count] < worstGrad){
+worstGrad = total(scores)[count];
+worstStudentNumber  = StudentNUmbers.get(count);
+}
+
+
 } 
+float classAverage = (float)(classTotal / total(scores).length); 
 
 
 
@@ -206,12 +218,30 @@ Class Summary
 ===================================================================================
 
 Best Graduating Student is: %s Scoring %d
+=============================================================================
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Worst Graduating Student is: %s scoring %d
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+class Total score is: %d
+
+class average score is : %.2f
+
+=======================================================================================
+
 """,hardestSub,numberOffalures ,easiestSub ,numberOfPasses,
 highStudent,overAllHighStudent, overallHigest,
 
 lowStudent,overAllLowStudent,overallLowest,
 
-bestStudentNumber , bestGrad );
+bestStudentNumber , bestGrad,
+
+ worstStudentNumber ,worstGrad,
+
+classTotal,  classAverage);
 
 
 
