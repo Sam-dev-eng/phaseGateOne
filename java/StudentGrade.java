@@ -103,6 +103,9 @@ int numberOfPasses = 0;
 int overallHigest = 0;
 int overAllHighStudent = 0;
 String highStudent = "";
+int overAllLowStudent = 0;
+int overallLowest = scores[0][0];
+String lowStudent = "";
 for (int count = 0; count < scores[0].length; count++){
    int highest = 0;
    int lowest = scores[0][count];
@@ -142,6 +145,17 @@ overAllHighStudent = count + 1;
 highStudent =  highestStudent;
 } 
 
+if (lowest < overallLowest){
+overallLowest = lowest;
+overAllLowStudent = count + 1;
+System.out.println("---"+overAllLowStudent );
+
+lowStudent =  lowestStudent;
+
+} 
+
+
+
 if ( numberOfPass > easiestSub ){
 easiestSub = count+1;
 numberOfPasses = numberOfPass;
@@ -159,6 +173,22 @@ numberOffalures = numberOfFailed;
 
 }
 
+int bestGrad = 0;
+String bestStudentNumber = "";
+for (int count = 0; count < total(scores).length; count++){
+
+if (total(scores)[count] > bestGrad){
+bestGrad = total(scores)[count];
+bestStudentNumber = StudentNUmbers.get(count);
+}
+
+} 
+
+
+
+
+
+
 System.out.printf("""
 
 
@@ -168,10 +198,20 @@ The Easiest subject is Subject %d with %d passes
  
 The overall highest score is scored by %s in Subject %d Scoring %d
 
+The overall lowest score is scored by %s in Subject %d Scoring %d
+===============================================================================
 
+Class Summary
 
-""",hardestSub,numberOffalures ,easiestSub ,
-numberOfPasses,highStudent,overAllHighStudent, overallHigest);
+===================================================================================
+
+Best Graduating Student is: %s Scoring %d
+""",hardestSub,numberOffalures ,easiestSub ,numberOfPasses,
+highStudent,overAllHighStudent, overallHigest,
+
+lowStudent,overAllLowStudent,overallLowest,
+
+bestStudentNumber , bestGrad );
 
 
 
