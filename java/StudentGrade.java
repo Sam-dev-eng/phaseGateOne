@@ -95,6 +95,97 @@ Number of Fails: %d
 
 }
 
+int hardestSub = 0;
+int easiestSub = 0;
+int lowestSub = 0;
+int numberOffalures = 0;
+int numberOfPasses = 0;
+int overallHigest = 0;
+int overAllHighStudent = 0;
+String highStudent = "";
+for (int count = 0; count < scores[0].length; count++){
+   int highest = 0;
+   int lowest = scores[0][count];
+   String highestStudent = "";
+   int subTotal = 0;
+   float average = 0;
+   int numberOfPass = 0;
+   int numberOfFailed = 0;
+   
+   String lowestStudent = StudentNUmbers.get(0);
+    for (int counter = 0; counter < scores.length; counter++){
+
+     subTotal += scores[counter][count]; 
+     if (scores[counter][count] > highest){
+      highest = scores[counter][count]; 
+       highestStudent = StudentNUmbers.get(counter);
+      
+}
+     if (scores[counter][count] < lowest){
+      lowest = scores[counter][count]; 
+      lowestStudent = StudentNUmbers.get(counter);
+}   
+     if (numberOfPassAndFailed(scores[counter][count]).equals("pass")){
+       numberOfPass++;
+}else
+if (numberOfPassAndFailed(scores[counter][count]).equals("failed")){
+       numberOfFailed++;
+
+}
+
+} 
+average = (float)(subTotal / scores[0].length); 
+
+if (highest > overallHigest){
+overallHigest = highest;
+overAllHighStudent = count + 1;
+highStudent =  highestStudent;
+} 
+
+if ( numberOfPass > easiestSub ){
+easiestSub = count+1;
+numberOfPasses = numberOfPass;
+}
+
+
+
+
+if (numberOfFailed > hardestSub){
+hardestSub = count+1;
+numberOffalures = numberOfFailed;
+
+
+} 
+
+}
+
+System.out.printf("""
+
+
+The Hardest subject is Subject %d with %d falures
+
+The Easiest subject is Subject %d with %d passes 
+ 
+The overall highest score is scored by %s in Subject %d Scoring %d
+
+
+
+""",hardestSub,numberOffalures ,easiestSub ,
+numberOfPasses,highStudent,overAllHighStudent, overallHigest);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
