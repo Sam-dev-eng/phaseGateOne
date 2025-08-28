@@ -7,7 +7,6 @@ public static ArrayList<String> items = new ArrayList<String>();
 public static ArrayList<Double> itemPrices = new ArrayList<Double>();
 public static ArrayList<Integer> numberOfItems = new ArrayList<Integer>();
 public static ArrayList<Double> totalItem = new ArrayList<Double>();
-//public static ArrayList<Double> subItems = new ArrayList<Double>();
 public static void main(String[] args){
 
 mainMenu();
