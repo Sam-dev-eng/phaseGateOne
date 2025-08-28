@@ -197,10 +197,6 @@ worstStudentNumber  = StudentNUmbers.get(count);
 float classAverage = (float)(classTotal / total(scores).length); 
 
 
-
-
-
-
 System.out.printf("""
 
 
