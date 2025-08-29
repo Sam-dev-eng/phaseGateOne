@@ -291,10 +291,10 @@ Scanner scanner = new Scanner (System.in);
 int [][]studentScores = new int[numberOfStudents][numberOfSubject];
 int number = 1;
 for (int count = 0; count < studentScores.length; count++){
-;
+System.out.printf("   SCORES FOR STUDENT %d%n%n",count + 1);
 int subNumber = 1;
  for(int counter = 0; counter < studentScores[count].length; counter++){ 
-System.out.printf("Enter score for student %d%nEnter score for subject %d%n",count + 1,counter + 1);
+System.out.printf("Enter score for subject %d%n",counter + 1);
  int scores = scanner.nextInt();
 String valid = checkScores(scores);
 while (!valid.equals("true")){
@@ -305,6 +305,12 @@ valid = checkScores(scores);
 } 
 studentScores[count][counter] = scores;
 }
+System.out.println("""
+Saving >>>>>>>>>>>>>>>>>>>>>>>>
+Saved sucessfully
+
+""");
+
 }
 return studentScores;
 }
