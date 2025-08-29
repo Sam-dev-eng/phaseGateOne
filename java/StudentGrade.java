@@ -22,14 +22,15 @@ displayStudentSubjects(studentSubjects);
 
 int [][] scores = collectscores(studentNumber,studentSubjects);
 
+System.out.println("============================================================================================");
 System.out.print("STUDENT    ");
 for (int sub = 0; sub < studentSubjects; sub++){
 System.out.print("\t"+StudentSubjects.get(sub));
 
 }
 System.out.println("\tTOT\tAVE\tPOS");
+System.out.println("================================================================================================");
 System.out.println("");
-
 for (int count = 0; count <  scores.length; count++){
   System.out.print(StudentNUmbers.get(count)+"\t");
   for (int counter = 0; counter < scores[count].length; counter++){
@@ -37,11 +38,13 @@ for (int count = 0; count <  scores.length; count++){
 
 
 }
-System.out.print(total(scores)[count]+"\t"+average(scores)[count]+"\t"+position(total(scores),total(scores)[count]));
+System.out.print(total(scores)[count]+"\t"+String.format("%.2f",average(scores)[count])+"\t"+position(total(scores),total(scores)[count]));
 System.out.println("");
 
 }
 
+System.out.println("=================================================================================================");
+System.out.println("=================================================================================================");
 System.out.println("\n\nSUBJECT SUMMARY");
 
 for (int count = 0; count < scores[0].length; count++){
@@ -73,8 +76,7 @@ if (numberOfPassAndFailed(scores[counter][count]).equals("failed")){
 
 }
 } 
-average = (float)(subTotal / scores[0].length); 
-
+average = (float)(subTotal / scores.length); 
 System.out.printf("""
 
 Subject %d      
@@ -89,6 +91,8 @@ Average score is: %.2f
 Number of passes: %d
 
 Number of Fails: %d
+========================================================================
+
 """, count + 1,highestStudent ,highest,lowestStudent , lowest,
  subTotal,average, numberOfPass,numberOfFailed);
 
@@ -103,9 +107,9 @@ int numberOfPasses = 0;
 int overallHigest = 0;
 int overAllHighStudent = 0;
 String highStudent = "";
-int overAllLowStudent = 0;
+int overAllLowStudent = 1;
 int overallLowest = scores[0][0];
-String lowStudent = "";
+String lowStudent = StudentNUmbers.get(0);
 for (int count = 0; count < scores[0].length; count++){
    int highest = 0;
    int lowest = scores[0][count];
@@ -148,15 +152,13 @@ highStudent =  highestStudent;
 if (lowest < overallLowest){
 overallLowest = lowest;
 overAllLowStudent = count + 1;
-System.out.println("---"+overAllLowStudent );
-
 lowStudent =  lowestStudent;
 
 } 
 
 
 
-if ( numberOfPass > easiestSub ){
+if ( numberOfPass > numberOfPasses){
 easiestSub = count+1;
 numberOfPasses = numberOfPass;
 }
@@ -177,7 +179,7 @@ int classTotal = 0;
 int bestGrad = 0;
 int worstGrad = total(scores)[0];
 String bestStudentNumber = "";
-String worstStudentNumber = "";
+String worstStudentNumber = StudentNUmbers.get(0);
 for (int count = 0; count < total(scores).length; count++){
 classTotal += total(scores)[count];
 
@@ -190,6 +192,7 @@ bestStudentNumber = StudentNUmbers.get(count);
 if (total(scores)[count] < worstGrad){
 worstGrad = total(scores)[count];
 worstStudentNumber  = StudentNUmbers.get(count);
+
 }
 
 
@@ -198,7 +201,7 @@ float classAverage = (float)(classTotal / total(scores).length);
 
 
 System.out.printf("""
-
+=============================================================================
 
 The Hardest subject is Subject %d with %d falures
 
@@ -292,8 +295,15 @@ for (int count = 0; count < studentScores.length; count++){
 int subNumber = 1;
  for(int counter = 0; counter < studentScores[count].length; counter++){ 
 System.out.printf("Enter score for student %d%nEnter score for subject %d%n",count + 1,counter + 1);
-studentScores[count][counter] = scanner.nextInt();
+ int scores = scanner.nextInt();
+String valid = checkScores(scores);
+while (!valid.equals("true")){
+System.out.println("Try again enter a number less than 100 and greater than 0");
+ scores = scanner.nextInt();
+valid = checkScores(scores);
 
+} 
+studentScores[count][counter] = scores;
 }
 }
 return studentScores;
@@ -322,7 +332,7 @@ float sum = 0;
  for (int counter = 0; counter < scores[count].length; counter++){
     sum += scores[count][counter];
   }
- float averageNum = (float)(sum / scores[count].length); 
+ float averageNum = (float)(sum / scores[0].length); 
    average[count] = averageNum;
 
 }
@@ -360,16 +370,21 @@ return num + 1;
 
 public static String numberOfPassAndFailed(int number){
 
-if ( number > 20 && number <= 100) return "pass";
+if ( number >= 50 && number <= 100) return "pass";
 else
-if ( number < 20 && number >= 0) return "failed"; 
+if ( number >= 0 && number < 50 ) return "failed"; 
 
 
  return "Null";    
 
 }
 
+public static String checkScores(int number){
 
+if (number <= 100 && number >= 0)return "true";
+
+return "false";
+}
 
 
 
