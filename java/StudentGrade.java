@@ -305,12 +305,8 @@ valid = checkScores(scores);
 } 
 studentScores[count][counter] = scores;
 }
-System.out.println("""
-Saving >>>>>>>>>>>>>>>>>>>>>>>>
-Saved sucessfully
-
-""");
-
+System.out.println("Saving... Please wait...\n\n");
+System.out.println(timeToAdd(5));
 }
 return studentScores;
 }
@@ -393,7 +389,23 @@ return "false";
 }
 
 
+public static String timeToAdd(long seconds){
+long totalMililSecondNow = System.currentTimeMillis();
+ long totalCurrentSecondNow = totalMililSecondNow / 1000;
 
+
+long time = 0;
+while ( time < seconds){
+long totalMililSec = System.currentTimeMillis();
+long totalCurrentSecond = totalMililSec / 1000;
+
+
+time = totalCurrentSecond - totalCurrentSecondNow;
+
+
+}
+return "Added Sucessfully!!";
+}
 
 
 
