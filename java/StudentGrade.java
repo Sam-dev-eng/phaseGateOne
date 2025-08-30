@@ -22,7 +22,7 @@ displayStudentSubjects(studentSubjects);
 
 int [][] scores = collectscores(studentNumber,studentSubjects);
 
-System.out.println("============================================================================================");
+System.out.println("\n\n============================================================================================");
 System.out.print("STUDENT    ");
 for (int sub = 0; sub < studentSubjects; sub++){
 System.out.print("\t"+StudentSubjects.get(sub));
@@ -32,7 +32,7 @@ System.out.println("\tTOT\tAVE\tPOS");
 System.out.println("================================================================================================");
 System.out.println("");
 for (int count = 0; count <  scores.length; count++){
-  System.out.print(StudentNUmbers.get(count)+"\t");
+  System.out.print(StudentNUmbers.get(count)+"		");
   for (int counter = 0; counter < scores[count].length; counter++){
   System.out.print(scores[count][counter]+"\t");
 
@@ -79,7 +79,7 @@ if (numberOfPassAndFailed(scores[counter][count]).equals("failed")){
 average = (float)(subTotal / scores.length); 
 System.out.printf("""
 
-Subject %d      
+%s      
 Highest scoring student is: %s scoring %d
 
 Lowest scoring student is: %s  scoring %d
@@ -93,21 +93,21 @@ Number of passes: %d
 Number of Fails: %d
 ========================================================================
 
-""", count + 1,highestStudent ,highest,lowestStudent , lowest,
+""", StudentSubjects.get(count),highestStudent ,highest,lowestStudent , lowest,
  subTotal,average, numberOfPass,numberOfFailed);
 
 
 }
 
-int hardestSub = 0;
-int easiestSub = 0;
+String hardestSub = StudentSubjects.get(0);
+String easiestSub = StudentSubjects.get(0);
 int lowestSub = 0;
 int numberOffalures = 0;
 int numberOfPasses = 0;
 int overallHigest = 0;
-int overAllHighStudent = 0;
+String overAllHighStudent = StudentSubjects.get(0);
 String highStudent = "";
-int overAllLowStudent = 1;
+String overAllLowStudent = StudentSubjects.get(0);
 int overallLowest = scores[0][0];
 String lowStudent = StudentNUmbers.get(0);
 for (int count = 0; count < scores[0].length; count++){
@@ -145,13 +145,13 @@ average = (float)(subTotal / scores[0].length);
 
 if (highest > overallHigest){
 overallHigest = highest;
-overAllHighStudent = count + 1;
+overAllHighStudent = StudentSubjects.get(count);
 highStudent =  highestStudent;
 } 
 
 if (lowest < overallLowest){
 overallLowest = lowest;
-overAllLowStudent = count + 1;
+overAllLowStudent = StudentSubjects.get(count);
 lowStudent =  lowestStudent;
 
 } 
@@ -159,15 +159,15 @@ lowStudent =  lowestStudent;
 
 
 if ( numberOfPass > numberOfPasses){
-easiestSub = count+1;
+easiestSub = StudentSubjects.get(count);
 numberOfPasses = numberOfPass;
 }
 
 
 
 
-if (numberOfFailed > hardestSub){
-hardestSub = count+1;
+if (numberOfFailed > numberOffalures){
+hardestSub = StudentSubjects.get(count);
 numberOffalures = numberOfFailed;
 
 
@@ -203,13 +203,13 @@ float classAverage = (float)(classTotal / total(scores).length);
 System.out.printf("""
 =============================================================================
 
-The Hardest subject is Subject %d with %d falures
+The Hardest subject is  %s with %d falures
 
-The Easiest subject is Subject %d with %d passes 
+The Easiest subject is  %s with %d passes 
  
-The overall highest score is scored by %s in Subject %d Scoring %d
+The overall highest score is scored by %s in  %s Scoring %d
 
-The overall lowest score is scored by %s in Subject %d Scoring %d
+The overall lowest score is scored by %s in  %s Scoring %d
 ===============================================================================
 
 Class Summary
@@ -232,6 +232,7 @@ class average score is : %.2f
 =======================================================================================
 
 """,hardestSub,numberOffalures ,easiestSub ,numberOfPasses,
+
 highStudent,overAllHighStudent, overallHigest,
 
 lowStudent,overAllLowStudent,overallLowest,
@@ -262,10 +263,12 @@ classTotal,  classAverage);
 
 }
 public static Object displayStudentNumber(int numberOfStudents){
-
+Scanner scanner = new Scanner(System.in);
 
 for (int count = 1; count <= numberOfStudents; count++){
-StudentNUmbers.add("student "+ count);
+System.out.printf("Enter Name of student %d !In Three Words eg.(ayo)!\n",count);
+String studentName = scanner.nextLine();
+StudentNUmbers.add(studentName);
 
 
 }
@@ -274,10 +277,12 @@ return StudentNUmbers;
 }
 
 public static Object displayStudentSubjects(int numberOfSubjects){
-
+Scanner scanner = new Scanner(System.in);
 int counter = 1;
 for (int count = 1; count <= numberOfSubjects; count++){
-StudentSubjects.add("SUB"+ count);
+System.out.printf("Enter Name of Subject %d eg.(Eng)\n", count);
+String SubjectName = scanner.next(); 
+StudentSubjects.add(SubjectName);
 
 }
 return StudentSubjects;
@@ -291,10 +296,10 @@ Scanner scanner = new Scanner (System.in);
 int [][]studentScores = new int[numberOfStudents][numberOfSubject];
 int number = 1;
 for (int count = 0; count < studentScores.length; count++){
-System.out.printf("   SCORES FOR STUDENT %d%n%n",count + 1);
+System.out.printf("\n   SCORES FOR STUDENT %s%n%n",StudentNUmbers.get(count));
 int subNumber = 1;
  for(int counter = 0; counter < studentScores[count].length; counter++){ 
-System.out.printf("Enter score for subject %d%n",counter + 1);
+System.out.printf("Enter score for %s%n",StudentSubjects.get(counter));
  int scores = scanner.nextInt();
 String valid = checkScores(scores);
 while (!valid.equals("true")){
@@ -305,9 +310,13 @@ valid = checkScores(scores);
 } 
 studentScores[count][counter] = scores;
 }
-System.out.println("Saving... Please wait...\n\n");
-System.out.println(timeToAdd(5));
+System.out.print("Saving... Please wait.");
+timeToAdd(5);
+System.out.println("\n\nAdded Sucessfully!!");
 }
+System.out.print("Fetching Scores... Please Wait a sec.");
+timeToAdd(7);
+
 return studentScores;
 }
 
@@ -389,11 +398,12 @@ return "false";
 }
 
 
-public static String timeToAdd(long seconds){
+public static void timeToAdd(long seconds){
 long totalMililSecondNow = System.currentTimeMillis();
  long totalCurrentSecondNow = totalMililSecondNow / 1000;
 
 
+long timer = 0;
 long time = 0;
 while ( time < seconds){
 long totalMililSec = System.currentTimeMillis();
@@ -402,9 +412,14 @@ long totalCurrentSecond = totalMililSec / 1000;
 
 time = totalCurrentSecond - totalCurrentSecondNow;
 
+if (time != timer){
+System.out.print(".");
+
+timer = time;
+}
 
 }
-return "Added Sucessfully!!";
+
 }
 
 
