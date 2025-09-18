@@ -4,7 +4,7 @@ public static ArrayList <String> StudentNUmbers = new ArrayList<String>();
 public static ArrayList <String> StudentSubjects = new ArrayList<String>();
 public static void main(String[]args){
 
-
+//timeToAdd(10);
 mainMenu();
 }
 public static void mainMenu(){
@@ -398,27 +398,34 @@ return "false";
 }
 
 
-public static void timeToAdd(long seconds){
-long totalMililSecondNow = System.currentTimeMillis();
- long totalCurrentSecondNow = totalMililSecondNow / 1000;
+public static void timeToAdd(long number){
 
+long tomiliSecond = System.currentTimeMillis();
+long totalSecond = tomiliSecond / 1000;
 
-long timer = 0;
 long time = 0;
-while ( time < seconds){
-long totalMililSec = System.currentTimeMillis();
-long totalCurrentSecond = totalMililSec / 1000;
+long previous = 0;
+while (time != number){
 
+long totalMiliSec = System.currentTimeMillis();
+long totalSec = totalMiliSec / 1000;
 
-time = totalCurrentSecond - totalCurrentSecondNow;
+time = totalSec -  totalSecond;
 
-if (time != timer){
+if (time != previous){
 System.out.print(".");
-
-timer = time;
-}
+previous = time;
 
 }
+
+
+
+
+}
+
+
+
+
 
 }
 
