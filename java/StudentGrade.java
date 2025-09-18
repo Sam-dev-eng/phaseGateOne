@@ -311,7 +311,7 @@ valid = checkScores(scores);
 studentScores[count][counter] = scores;
 }
 System.out.print("Saving... Please wait.");
-timeToAdd(5);
+timeToAdd(10);
 System.out.println("\n\nAdded Sucessfully!!");
 }
 System.out.print("Fetching Scores... Please Wait a sec.");

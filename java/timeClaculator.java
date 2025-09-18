@@ -14,12 +14,15 @@ while ( time < 5){
 
 long totalMililSec = System.currentTimeMillis();
 long totalCurrentSecond = totalMililSec / 1000;
+long currentSec = totalCurrentSecond % 60;
+//time = totalCurrentSecond - totalCurrentSecondNow;
+long totalminutes = totalCurrentSecond / 60;
+long currentMinutes = totalminutes % 60; 
 
-time = totalCurrentSecond - totalCurrentSecondNow;
-if(time != previous){
-System.out.print(".");
+if(currentMinutes != previous){
+System.out.print(currentMinutes+" ");
 
-previous = time;
+previous = currentMinutes;
 
 
 }
